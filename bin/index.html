@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html><head>
+	<title>YAL's PF2e Proficiency Table</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<meta property="og:title" content="YAL's PF2e Proficiency Table" />
+	<meta property="og:description" content="This one's interactive!" />
+	<link rel="stylesheet" href="style.css"/>
+</head><body>
+	<main>
+		<fieldset>
+			<legend>Classes</legend>
+			<select id="class-picker"></select>
+			<input id="class-add" value="Add" type="button" />
+			<input id="class-clear" value="Clear" type="button" />
+			<div id="class-list" class="filter-buttons"></div>
+		</fieldset>
+		<fieldset>
+			<legend>Proficiencies</legend>
+			<select id="prof-picker"></select>
+			<input id="prof-add" value="Add" type="button" />
+			<input id="prof-clear" value="Clear" type="button" />
+			<div id="prof-list" class="filter-buttons"></div>
+		</fieldset>
+		<label>
+			<input type="checkbox" id="sideways" checked />
+			Sideways
+		</label>
+		<table id="out"></table>
+		Legend:
+		<ul id="legend"></ul>
+	</main>
+	<script src="data.js"></script>
+	<script src="script.js"></script>
+</body></html>
