@@ -1,3 +1,4 @@
+import js.html.URLSearchParams;
 import js.html.UListElement;
 import haxe.rtti.CType.Classdef;
 import js.html.TableCellElement;
@@ -203,7 +204,17 @@ class ProficiencyTable {
 		addProf("Perception", p -> p.perception);
 		createRemovableFactory(profPicker, find("#prof-add"), find("#prof-clear"), profList);
 		//
-		classData = ProficiencyData.get();
+		{
+			var search = new URLSearchParams(document.location.search);
+			classData = [];
+			if (!search.has("sf2e")) {
+				classData = classData.concat(ProficiencyData.pf2e());
+			}
+			if (search.has("sf2e") || search.has("both")) {
+				classData = classData.concat(ProficiencyData.sf2e());
+			}
+		}
+		//
 		var sortedClassNames = classData.map(c -> c.name);
 		sortedClassNames.sort((a, b) -> (a < b ? -1 : 1));
 		for (name in sortedClassNames) {

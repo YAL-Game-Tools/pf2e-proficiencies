@@ -1,7 +1,7 @@
 (function() {
-	window.proficienciesPerClass = [];
+	window.pf2eProficiencies = [];
 	function add(name, shortName, perLevel) {
-		window.proficienciesPerClass.push({ name, shortName, perLevel });
+		window.pf2eProficiencies.push({ name, shortName, perLevel });
 	}
 	//
 	add("Alchemist", "Alch", [
@@ -139,6 +139,73 @@
 		{"classDC":3,"perception":2,"weapons":3,"lightArmor":4,"mediumArmor":4,"heavyArmor":4,"unarmored":4,"armor":4,"spells":3,"fortitude":3,"reflex":2,"will":3},
 		{"classDC":3,"perception":2,"weapons":3,"lightArmor":4,"mediumArmor":4,"heavyArmor":4,"unarmored":4,"armor":4,"spells":3,"fortitude":3,"reflex":2,"will":3},
 		{"classDC":3,"perception":2,"weapons":3,"lightArmor":4,"mediumArmor":4,"heavyArmor":4,"unarmored":4,"armor":4,"spells":3,"fortitude":3,"reflex":2,"will":3},
+	]);
+	//
+	add("Cleric (Cloistered)", "CC", [
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":1,"reflex":1,"will":2},
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":1,"reflex":1,"will":2},
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":1,"will":3},
+		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":1,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":4,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":4,"fortitude":2,"reflex":2,"will":3},
+	]);
+	add("Cleric (Warpriest)", "WP", [
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":2,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":2,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":2,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":3,"reflex":2,"will":3},
+		{"classDC":1,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":3,"reflex":2,"will":3},
+	]);
+	add("Cleric (Battle Harbinger)", "BH", [
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
+		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":2},
+		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":2},
+		{"classDC":2,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":2},
+		{"classDC":2,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":2},
+		{"classDC":3,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
+		{"classDC":3,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
+		{"classDC":3,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
+		{"classDC":3,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
+		{"classDC":4,"perception":2,"weapons":3,"lightArmor":3,"mediumArmor":3,"heavyArmor":0,"unarmored":3,"armor":3,"spells":2,"fortitude":3,"reflex":2,"will":3},
+		{"classDC":4,"perception":2,"weapons":3,"lightArmor":3,"mediumArmor":3,"heavyArmor":0,"unarmored":3,"armor":3,"spells":2,"fortitude":3,"reflex":2,"will":3},
 	]);
 	//
 	add("Commander", "Cmd", [
@@ -866,73 +933,6 @@
 		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":2,"reflex":2,"will":3},
 		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":4,"fortitude":2,"reflex":2,"will":3},
 		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":4,"fortitude":2,"reflex":2,"will":3},
-	]);
-	//
-	add("Cleric (Cloistered)", "CC", [
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":1,"reflex":1,"will":2},
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":1,"reflex":1,"will":2},
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":1,"will":3},
-		{"classDC":1,"perception":2,"weapons":1,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":1,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":4,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":4,"fortitude":2,"reflex":2,"will":3},
-	]);
-	add("Cleric (Warpriest)", "WP", [
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":2,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":2,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":2,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":3,"reflex":2,"will":3},
-		{"classDC":1,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":3,"fortitude":3,"reflex":2,"will":3},
-	]);
-	add("Cleric (Battle Harbinger)", "BH", [
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":1,"perception":1,"weapons":1,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":1,"fortitude":2,"reflex":1,"will":2},
-		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":2},
-		{"classDC":2,"perception":2,"weapons":2,"lightArmor":1,"mediumArmor":1,"heavyArmor":0,"unarmored":1,"armor":1,"spells":2,"fortitude":2,"reflex":2,"will":2},
-		{"classDC":2,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":2},
-		{"classDC":2,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":2},
-		{"classDC":3,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
-		{"classDC":3,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
-		{"classDC":3,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
-		{"classDC":3,"perception":2,"weapons":3,"lightArmor":2,"mediumArmor":2,"heavyArmor":0,"unarmored":2,"armor":2,"spells":2,"fortitude":3,"reflex":2,"will":3},
-		{"classDC":4,"perception":2,"weapons":3,"lightArmor":3,"mediumArmor":3,"heavyArmor":0,"unarmored":3,"armor":3,"spells":2,"fortitude":3,"reflex":2,"will":3},
-		{"classDC":4,"perception":2,"weapons":3,"lightArmor":3,"mediumArmor":3,"heavyArmor":0,"unarmored":3,"armor":3,"spells":2,"fortitude":3,"reflex":2,"will":3},
 	]);
 	//
 })();

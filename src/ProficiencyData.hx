@@ -1,8 +1,11 @@
 import js.Browser;
 
 extern class ProficiencyData {
-	public static inline function get():Array<ProficiencyData> {
-		return (cast Browser.window).proficienciesPerClass;
+	public static inline function pf2e():Array<ProficiencyData> {
+		return (cast Browser.window).pf2eProficiencies;
+	}
+	public static inline function sf2e():Array<ProficiencyData> {
+		return (cast Browser.window).sf2eProficiencies;
 	}
 	
 	public var name:String;
