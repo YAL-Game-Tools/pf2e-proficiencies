@@ -23,18 +23,49 @@
 		if (!img) return 0;
 		return url2prof(img.src);
 	}
+	function weaponNamesToProf(ctr) {
+		let maxWeaponProf = 0;
+		for (let div of ctr.querySelectorAll(`.weapon-name`)) {
+			let img = div.previousElementSibling;
+			maxWeaponProf = Math.max(maxWeaponProf, img2prof(img));
+		}
+		return maxWeaponProf;
+	}
+	//
 	async function render() {
 		return new Promise((resolve, reject) => {
 			requestAnimationFrame(() => { resolve(true) });
 		});
 	}
+	function getCurrentTab() {
+		return document.querySelectorAll(
+			`#tabbed-area > .tabbed-area-menu > .section-menu.section-menu-selected`
+		);
+	}
+	function setCurrentTab(name) {
+		let tabs = [...document.querySelectorAll(
+			`#tabbed-area > .tabbed-area-menu > .section-menu`
+		)];
+		let tab = tabs.find(tab => tab.innerText == name);
+		tab.click();
+	}
+	async function getEidolonProfs() {
+		let ctr = document.querySelector(`.pet-column-holder`);
+		let armor = img2prof(ctr.querySelector(`.ac-holder + div img`));
+		return {
+			armor,
+			unarmored: armor,
+			lightArmor: 0,
+			mediumArmor: 0,
+			heavyArmor: 0,
+			//
+			
+		};
+	}
 	async function getProfs() {
-		let tabs = [...document.querySelectorAll(`#tabbed-area > .tabbed-area-menu > .section-menu`)];
-		function openTab(name) {
-			let tab = tabs.find(tab => tab.innerText == name);
-			tab.click();
+		if (getCurrentTab() == "Pets" && document.querySelector("#petEidolon.section-menu-selected")) {
+			return getEidolonProfs();
 		}
-		//
 		let out = {};
 
 		// skills/DCs:
@@ -47,16 +78,11 @@
 		out.perception = skillLabelToProf(skillLabels.find(l => l.innerText == "Perception"));
 
 		//
-		openTab("Weapons");
-		let maxWeaponProf = 0;
-		for (let div of document.querySelectorAll(`.weapon-name`)) {
-			let img = div.previousElementSibling;
-			maxWeaponProf = Math.max(maxWeaponProf, img2prof(img));
-		}
-		out.weapons = maxWeaponProf;
+		setCurrentTab("Weapons");
+		out.weapons = weaponNamesToProf(document);
 
 		//
-		openTab("Defense");
+		setCurrentTab("Defense");
 		let armorDivs = document.querySelector(`.tabbed-area-top`).querySelectorAll(`.short-proficiency`);
 		function armorToProf(div) {
 			return img2prof(div.querySelector(`img`));
@@ -68,7 +94,7 @@
 		out.armor = Math.max(out.lightArmor, out.mediumArmor, out.heavyArmor, out.unarmored);
 
 		//
-		openTab("Spells");
+		setCurrentTab("Spells");
 		document.querySelector(`#tabbed-area > .tabbed-area-menu + .submenu`).querySelector("div").click();
 		out.spells = img2prof(document.querySelector(`#layout-parent-spellcasters .prof-section-holder img`));
 		
