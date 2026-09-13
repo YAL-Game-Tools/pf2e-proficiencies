@@ -1,6 +1,8 @@
+import js.lib.RegExp;
+import js.html.SpanElement;
+import js.html.DragEvent;
 import js.html.URLSearchParams;
 import js.html.UListElement;
-import haxe.rtti.CType.Classdef;
 import js.html.TableCellElement;
 import js.html.TableRowElement;
 import js.html.TableElement;
@@ -18,13 +20,63 @@ class ProficiencyTable {
 		return cast document.querySelector(query);
 	}
 	static function addRemovable(target:Element, text:String) {
-		var button = document.createInputElement();
-		button.type = "button";
-		button.value = text;
+		var parentID = target.id;
+		var parentKey = "text/parent-is-" + parentID;
+		var id = text;
+		id = (cast id).replaceAll(new RegExp("[^\\w+ ]", "g"), "");
+		id = StringTools.replace(id, " ", "-");
+		var fullID = parentID + ":" + id;
+		var button = document.createSpanElement();
+		button.classList.add("button");
+		button.append(text);
+		button.id = fullID;
+		button.draggable = true;
+		//button.type = "button";
+		//button.value = text;
 		button.onclick = e -> {
 			button.remove();
 			render();
 		};
+		button.ondragstart = (e:DragEvent) -> {
+			e.dataTransfer.setData("text/element-id", fullID);
+			e.dataTransfer.setData(parentKey, "true");
+			e.dataTransfer.effectAllowed = "move";
+			button.classList.add("dragged");
+		};
+		button.ondragend = (e:DragEvent) -> {
+			button.classList.remove("dragged");
+		}
+		button.ondragover = (e:DragEvent) -> {
+			if (button.classList.contains("dragged")) return;
+			if (e.dataTransfer.types.contains(parentKey)) {
+				e.dataTransfer.dropEffect = "move";
+				e.preventDefault();
+				if (e.offsetX < button.offsetWidth / 2) {
+					button.classList.add("drop-before");
+					button.classList.remove("drop-after");
+				} else {
+					button.classList.remove("drop-before");
+					button.classList.add("drop-after");
+				}
+			}
+		};
+		button.ondragleave = (e:DragEvent) -> {
+			button.classList.remove("drop-before");
+			button.classList.remove("drop-after");
+		}
+		button.ondrop = (e:DragEvent) -> {
+			var after = button.classList.contains("drop-after");
+			button.classList.remove("drop-before");
+			button.classList.remove("drop-after");
+			var dropID = e.dataTransfer.getData("text/element-id");
+			if (dropID == null) return;
+			var thing = document.getElementById(dropID);
+			if (thing == null) return;
+			if (after) {
+				button.after(thing);
+			} else button.before(thing);
+			render();
+		}
 		target.append(button);
 		render();
 		return button;
@@ -62,9 +114,9 @@ class ProficiencyTable {
 		if (!canRender) return;
 		function getPicks<T:{name:String}>(div:Element, arr:Array<T>) {
 			var out = [];
-			for (node in div.querySelectorAll('input[type="button"]')) {
-				var button:InputElement = cast node;
-				var name = button.value;
+			for (node in div.querySelectorAll('.button')) {
+				var button:SpanElement = cast node;
+				var name = button.innerText;
 				var thing = arr.filter(q -> q.name == name)[0];
 				if (thing != null) out.push(thing);
 			}
@@ -103,6 +155,7 @@ class ProficiencyTable {
 			return td;
 		}
 		if (sideways.checked) { // Name > Class > Level
+			out.classList.add("sideways");
 			var th1 = document.createTableRowElement();
 			appendTH(th1, "Name").classList.add("align-right");
 			appendTH(th1, "Class").classList.add("align-right");
@@ -137,6 +190,7 @@ class ProficiencyTable {
 				}
 			}
 		} else { // Name > Weapons > Spells
+			out.classList.remove("sideways");
 			//
 			var th1 = document.createTableRowElement();
 			appendTH(th1, "Name").classList.add("align-right");
