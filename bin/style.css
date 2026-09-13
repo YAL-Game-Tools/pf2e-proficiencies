@@ -57,7 +57,23 @@ main > h1 {
 		/* the borders are collapsed so they don't show on the sticky row, how silly */
 		box-shadow: 0 2px 0 black, 0 -2px 0 black;
 		position: sticky;
-		top: 1px;
+		top: 2px;
+	}
+	&:not(.sideways) {
+		th:first-child, td:first-child {
+			background: Canvas;
+			border-collapse: separate;
+			position: sticky;
+			left: -1px;
+			&:after {
+				content: "";
+				position: absolute;
+				top: 0; bottom: 0;
+				left: 100%;
+				width: 2px;
+				background: black;
+			}
+		}
 	}
 	th, td {
 		border: 1px solid #00000040;
