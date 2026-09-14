@@ -6,13 +6,43 @@
 	<meta property="og:title" content="YAL's PF2e Proficiency Table" />
 	<meta property="og:description" content="This one's interactive!" />
 	<link rel="stylesheet" href="style.css?v=AUTO_DATE"/>
+	<script defer="" src="https://cloud.umami.is/script.js" data-website-id="5e27083a-c054-4136-9592-b43ac60a5e84"></script>
 </head><body>
 	<main>
 		<h1>YAL's PF2e Proficiency Table</h1>
-		Mode:
-		<a href="?">pf2e</a>
-		· <a href="?sf2e">sf2e</a> (WIP)
-		· <a href="?both">both</a>
+		<p>
+			This is a filterable table of class progressions in Pathfinder 2nd Edition!
+		</p><p>Mode:
+			<a href="?">pf2e</a>
+			· <a href="?sf2e">sf2e</a> (WIP)
+			· <a href="?both">both</a>
+		</p>
+		<details><summary>Remarks</summary>
+			A rather non-exhaustive list.
+			
+			<h3>Weapons</h3>
+			<ul><li>
+				Fighters get better proficiencies in their chosen weapon group.
+			</li><li>
+				Gunslingers get better proficiencies in firearms and crossbows.
+			</li><li>
+				Clerics get better proficiencies in their deity weapons.
+			</li></ul>
+			
+			<h3>Class DC</h3>
+			<ul><li>
+				Magi can use their Spell DC instead of Class DC on crits via Arcane Fists.
+			</li><li>
+				Clerics can use their Spell DC instead of Class DC on crits.
+			</li></ul>
+			
+			<h3>Saves</h3>
+			<ul><li>
+				Monks pick their Master/Legendary saves.
+			</li><li>
+				Battle Harbingers don't get Will save degree upgrade despite getting Master.
+			</li></ul>
+		</details>
 		<fieldset>
 			<legend>Classes</legend>
 			<select id="class-picker"></select>
@@ -33,7 +63,11 @@
 			<input type="checkbox" id="sideways" checked />
 			Sideways
 		</label>
-		<table id="out"></table>
+		<label>
+			<input type="checkbox" id="separate" checked />
+			Separate
+		</label>
+		<div id="out"></div>
 		Legend:
 		<ul id="legend"></ul>
 	</main>

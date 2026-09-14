@@ -107,21 +107,23 @@ class ProficiencyTable {
 	static var classList:DivElement = find("#class-list");
 	//
 	static var sideways:InputElement = find("#sideways");
+	static var separate:InputElement = find("#separate");
 	static var out:TableElement = find("#out");
 	static var legend:UListElement = find("#legend");
 	static var canRender = true;
+	static function getPicks<T:{name:String}>(div:Element, arr:Array<T>) {
+		var out = [];
+		for (node in div.querySelectorAll('.button')) {
+			var button:SpanElement = cast node;
+			var name = button.innerText;
+			var thing = arr.filter(q -> q.name == name)[0];
+			if (thing != null) out.push(thing);
+		}
+		return out;
+	}
+	//
 	static function render() {
 		if (!canRender) return;
-		function getPicks<T:{name:String}>(div:Element, arr:Array<T>) {
-			var out = [];
-			for (node in div.querySelectorAll('.button')) {
-				var button:SpanElement = cast node;
-				var name = button.innerText;
-				var thing = arr.filter(q -> q.name == name)[0];
-				if (thing != null) out.push(thing);
-			}
-			return out;
-		}
 		//
 		var chosenClasses = getPicks(classList, classData);
 		var chosenProfs = getPicks(profList, profData);
@@ -142,6 +144,7 @@ class ProficiencyTable {
 		inline function wantLevelSep(level:Int) {
 			return (level == 1 || level % 5 == 0);
 		}
+		//
 		static var proficiencyNames = ["Untrained", "Trained", "Expert", "Master", "Legendary"];
 		static var proficiencyShortNames = ["U", "T", "E", "M", "L"];
 		function addProficiencyTD(tr:TableRowElement, cl, prof, level:Int, tier:Int) {
@@ -154,23 +157,41 @@ class ProficiencyTable {
 			td.classList.add("prof-" + proficiencyNames[tier].toLowerCase());
 			return td;
 		}
+		//
+		var sep = separate.checked;
+		var table:TableElement = document.createTableElement();
+		function prependHeader(text:String) {
+			var h2 = document.createElement("h2");
+			h2.append(text);
+			table.before(h2);
+		}
+		out.append(table);
+		//
 		if (sideways.checked) { // Name > Class > Level
-			out.classList.add("sideways");
-			var th1 = document.createTableRowElement();
-			appendTH(th1, "Name").classList.add("align-right");
-			appendTH(th1, "Class").classList.add("align-right");
-			for (level in 1 ... 21) {
-				var th = appendTH(th1, "" + level);
-				if (wantLevelSep(level)) th.classList.add("sep-left");
+			function addHeader() {
+				table.classList.add("sideways");
+				var headerRow = document.createTableRowElement();
+				if (!sep) appendTH(headerRow, "Name").classList.add("align-right");
+				appendTH(headerRow, "Class").classList.add("align-right");
+				for (level in 1 ... 21) {
+					var th = appendTH(headerRow, "" + level);
+					th.classList.add("level-row");
+					if (wantLevelSep(level)) th.classList.add("sep-left");
+				}
+				table.append(headerRow);
 			}
-			out.append(th1);
+			addHeader();
 			//
-			for (prof in chosenProfs) {
-				var first = true;
-				for (cl in chosenClasses) {
+			for (profIndex => prof in chosenProfs) {
+				if (sep && profIndex > 0) {
+					table = document.createTableElement();
+					out.append(table);
+					addHeader();
+				}
+				if (sep) prependHeader(prof.name);
+				for (classIndex => cl in chosenClasses) {
 					var row = document.createTableRowElement();
-					if (first) {
-						first = false;
+					if (classIndex == 0 && !sep) {
 						row.classList.add("sep-top");
 						var th = appendTH(row, prof.name);
 						th.classList.add("align-right");
@@ -186,33 +207,10 @@ class ProficiencyTable {
 						}
 					}
 					//
-					out.append(row);
+					table.append(row);
 				}
 			}
 		} else { // Name > Weapons > Spells
-			out.classList.remove("sideways");
-			//
-			var th1 = document.createTableRowElement();
-			appendTH(th1, "Name").classList.add("align-right");
-			for (prof in chosenProfs) {
-				appendTH(th1, prof.name, chosenClasses.length).classList.add("sep-left");
-			}
-			out.append(th1);
-			//
-			var th2 = document.createTableRowElement();
-			appendTH(th2, "Class").classList.add("align-right");
-			for (prof in chosenProfs) {
-				var first = true;
-				for (cl in chosenClasses) {
-					var th = appendTH(th2, cl.shortName);
-					th.title = cl.name;
-					if (first) {
-						first = false;
-						th.classList.add("sep-left");
-					}
-				}
-			}
-			out.append(th2);
 			// add legends:
 			for (cl in chosenClasses) {
 				var li = document.createLIElement();
@@ -220,24 +218,62 @@ class ProficiencyTable {
 				legend.append(li);
 			}
 			//
-			for (level in 1 ... 21) {
-				var tr = document.createTableRowElement();
-				if (level == 1 || (level % 5 == 0)) {
-					tr.classList.add("sep-top");
+			var rows:Array<TableRowElement> = null;
+			function init() {
+				if (!sep) {
+					var profRow = document.createTableRowElement();
+					appendTH(profRow, "Name").classList.add("align-right");
+					for (prof in chosenProfs) {
+						appendTH(profRow, prof.name, chosenClasses.length).classList.add("sep-left");
+					}
+					table.append(profRow);
 				}
-				appendTD(tr, "" + level).classList.add("align-right");
-				for (prof in chosenProfs) {
-					var first = true;
-					for (cl in chosenClasses) {
+				//
+				var classRow = document.createTableRowElement();
+				appendTH(classRow, "Class").classList.add("align-right", "condensed");
+				table.append(classRow);
+				rows = [classRow];
+				//
+				for (level in 1 ... 21) {
+					var tr = document.createTableRowElement();
+					if (wantLevelSep(level)) tr.classList.add("sep-top");
+					appendTD(tr, "" + level).classList.add("align-right");
+					table.append(tr);
+					rows.push(tr);
+				}
+			}
+			function addClassNames() {
+				var first = true;
+				for (cl in chosenClasses) {
+					var th = appendTH(rows[0], cl.shortName);
+					th.classList.add("condensed");
+					th.title = cl.name;
+					if (first) {
+						first = false;
+						th.classList.add("sep-left");
+					}
+				}
+			}
+			init();
+			//
+			for (profIndex => prof in chosenProfs) {
+				if (profIndex > 0 && sep) {
+					table = document.createTableElement();
+					out.append(table);
+					init();
+				}
+				if (sep) prependHeader(prof.name);
+				addClassNames();
+				for (level in 1 ... 21) {
+					var tr = rows[level];
+					for (ci => cl in chosenClasses) {
 						var tier = prof.getter(cl.perLevel[level - 1]);
 						var td = addProficiencyTD(tr, cl, prof, level, tier);
-						if (first) {
-							first = false;
+						if (ci == 0) {
 							td.classList.add("sep-left");
 						}
 					}
 				}
-				out.append(tr);
 			}
 		}
 	}
@@ -279,6 +315,7 @@ class ProficiencyTable {
 		createRemovableFactory(classPicker, find("#class-add"), find("#class-clear"), classList);
 		//
 		sideways.onchange = e -> { render(); };
+		separate.onchange = e -> { render(); };
 		// demo
 		canRender = false;
 		for (cl in classData) {

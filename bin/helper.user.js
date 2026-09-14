@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         PB2e: Copy proficiencies
 // @namespace    https://yal.cc/
-// @version      2026-09-10
+// @version      2026-09-14
 // @description  For tool use
 // @author       YellowAfterlife
 // @match        https://pathbuilder2e.com/app.html*
@@ -38,9 +38,9 @@
 		});
 	}
 	function getCurrentTab() {
-		return document.querySelectorAll(
+		return document.querySelector(
 			`#tabbed-area > .tabbed-area-menu > .section-menu.section-menu-selected`
-		);
+		).innerText.trim();
 	}
 	function setCurrentTab(name) {
 		let tabs = [...document.querySelectorAll(
@@ -49,25 +49,35 @@
 		let tab = tabs.find(tab => tab.innerText == name);
 		tab.click();
 	}
-	async function getEidolonProfs() {
+	async function getEidolonProfs(base) {
 		let ctr = document.querySelector(`.pet-column-holder`);
 		let armor = img2prof(ctr.querySelector(`.ac-holder + div img`));
+		let skillLabels = [...ctr.querySelectorAll(`.section-skill-name`)];
+		function getSkillProf(name) {
+			skillLabels.find(e => e.innerText == name).click();
+			let modal = document.querySelector(`#root.modal`);
+			let prof = img2prof(modal.querySelector(`.prof-section img`));
+			modal.dispatchEvent(new MouseEvent("mousedown"));
+			return prof;
+		}
 		return {
 			armor,
 			unarmored: armor,
 			lightArmor: 0,
 			mediumArmor: 0,
 			heavyArmor: 0,
+			spells: 0,
+			weapons: weaponNamesToProf(ctr),
 			//
-			
+			classDC: base.classDC,
+			perception: getSkillProf("Perception"),
+			fortitude: getSkillProf("Fortitude"),
+			reflex: getSkillProf("Reflex"),
+			will: getSkillProf("Will"),
 		};
 	}
 	async function getProfs() {
-		if (getCurrentTab() == "Pets" && document.querySelector("#petEidolon.section-menu-selected")) {
-			return getEidolonProfs();
-		}
 		let out = {};
-
 		// skills/DCs:
 		function skillLabelToProf(label) {
 			let parent = label.parentElement;
@@ -76,6 +86,10 @@
 		let skillLabels = [...document.querySelectorAll(`#container-section-skills .section-skill-name`)]
 		out.classDC = skillLabelToProf(skillLabels[0]);
 		out.perception = skillLabelToProf(skillLabels.find(l => l.innerText == "Perception"));
+		
+		if (getCurrentTab() == "Pets" && document.querySelector("#petEidolon.section-menu-selected")) {
+			return getEidolonProfs(out);
+		}
 
 		//
 		setCurrentTab("Weapons");
@@ -126,7 +140,11 @@
 		await setLevel(prevLevel);
 		return out;
 	}
-	GM.registerMenuCommand("Copy Proficiencies", async () => {
+	if (typeof(GM) == "undefined") {
+		getAllProfs().then(q => {
+			console.log(q);
+		});
+	} else GM.registerMenuCommand("Copy Proficiencies", async () => {
 		const perLevel = await getAllProfs();
 		const lines = perLevel.map(p => "\t" + JSON.stringify(p) + ",");
 		const text = ["["].concat(lines, ["]"]).join("\n");
