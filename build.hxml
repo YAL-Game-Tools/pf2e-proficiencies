@@ -1,4 +1,5 @@
 --class-path src
 --main ProficiencyTable
 --js bin/script.js
+-D js-es=6
 --macro tools.UpdatePHP.run()

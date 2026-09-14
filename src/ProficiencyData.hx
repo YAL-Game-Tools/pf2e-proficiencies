@@ -9,6 +9,7 @@ extern class ProficiencyData {
 	}
 	
 	public var name:String;
+	public var id:String;
 	public var shortName:String;
 	public var perLevel:Array<ProficiencyPerLevel>;
 }

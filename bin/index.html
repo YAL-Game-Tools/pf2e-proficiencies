@@ -47,6 +47,7 @@
 			<legend>Classes</legend>
 			<select id="class-picker"></select>
 			<input id="class-add" value="Add" type="button" />
+			<input id="class-add-missing" value="Add Missing" type="button" />
 			<input id="class-clear" value="Clear" type="button" />
 			<div id="class-list" class="filter-buttons"></div>
 			<div class="filter-note">(click to remove items, drag-and-drop to re-order)</div>
@@ -55,20 +56,24 @@
 			<legend>Proficiencies</legend>
 			<select id="prof-picker"></select>
 			<input id="prof-add" value="Add" type="button" />
+			<input id="prof-add-missing" value="Add Missing" type="button" />
 			<input id="prof-clear" value="Clear" type="button" />
 			<div id="prof-list" class="filter-buttons"></div>
 			<div class="filter-note">(click to remove items, drag-and-drop to re-order)</div>
 		</fieldset>
-		<label>
-			<input type="checkbox" id="sideways" checked />
-			Sideways
-		</label>
-		<label>
-			<input type="checkbox" id="separate" checked />
-			Separate
-		</label>
+		<p>
+			<label>
+				<input type="checkbox" id="sideways" checked />
+				Sideways
+			</label>
+			<label>
+				<input type="checkbox" id="separate" checked />
+				Separate
+			</label>
+			<input type="button" value="Share" id="share"/>
+		</p>
 		<div id="out"></div>
-		Legend:
+		<p>Legend:</p>
 		<ul id="legend"></ul>
 	</main>
 	<script src="data-pf2e.js?v=AUTO_DATE"></script>
