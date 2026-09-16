@@ -1,5 +1,6 @@
 package tools;
 
+import js.lib.RegExp;
 import js.html.Document;
 import haxe.extern.EitherType;
 import js.html.Element;
@@ -7,6 +8,13 @@ import js.Browser.document;
 import js.Browser.window;
 
 class HtmlTools {
+	public static function makeID(text:String) {
+		var id = text;
+		id = (cast id).replaceAll(new RegExp("[^\\w+ ]", "g"), "");
+		id = StringTools.replace(id, " ", "-");
+		return id;
+	}
+	
 	@:noUsing public static function find<T:Element>(selector:String, ?c:Class<T>):T {
 		return cast document.querySelector(selector);
 	}

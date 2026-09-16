@@ -18,9 +18,9 @@ class Renderer {
 	//
 	public static function run() {
 		if (!canRender) return;
-		function getPicks<T:{name:String}>(div:Element, arr:Array<T>) {
+		function getPicks<T:{name:String}>(set:TagBlockSet, arr:Array<T>) {
 			var out = [];
-			for (node in div.querySelectorAll('.button')) {
+			for (node in set.blocks) {
 				var button:SpanElement = cast node;
 				var name = button.innerText;
 				var thing = arr.filter(q -> q.name == name)[0];
@@ -29,8 +29,8 @@ class Renderer {
 			return out;
 		}
 		//
-		var chosenClasses = getPicks(classList, classData);
-		var chosenProfs = getPicks(profList, profData);
+		var chosenClasses = getPicks(classes, ProficiencyData.list);
+		var chosenProfs = getPicks(proficiencies, ProficiencyType.list);
 		//
 		legend.innerHTML = "";
 		out.innerHTML = "";
