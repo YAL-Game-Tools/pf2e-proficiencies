@@ -8,11 +8,15 @@ import js.Browser.document;
 import js.Browser.window;
 
 class HtmlTools {
-	public static function makeID(text:String) {
+	@:noUsing public static function makeID(text:String) {
 		var id = text;
 		id = (cast id).replaceAll(new RegExp("[^\\w+ ]", "g"), "");
 		id = StringTools.replace(id, " ", "-");
 		return id;
+	}
+	
+	public static function capitalize(s:String) {
+		return s.charAt(0).toUpperCase() + s.substr(1);
 	}
 	
 	@:noUsing public static function find<T:Element>(selector:String, ?c:Class<T>):T {
@@ -33,6 +37,19 @@ class HtmlTools {
 		el:EitherType<Document, Element>, selectors:String, ?c:Class<T>
 	):T {
 		return cast asElement(el).querySelector(selectors);
+	}
+	
+	public static function appendSimple(target:Element, tagName:String, ?text:String):Element {
+		var element = document.createElement(tagName);
+		if (text != null) element.append(text);
+		target.append(element);
+		return element;
+	}
+	public static function appendSimpleAs<T:Element>(target:Element, tagName:String, ?text:String, ?c:Class<T>):T {
+		var element:T = cast document.createElement(tagName);
+		if (text != null) element.append(text);
+		target.append(element);
+		return element;
 	}
 }
 extern class ElementList implements ArrayAccess<Element> {

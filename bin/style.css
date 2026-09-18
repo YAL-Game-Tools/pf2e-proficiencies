@@ -121,35 +121,74 @@ main details h3 {
 			min-width: 2ch;
 		}
 	}
+	tr:hover {
+		td, th, td:first-child, th:first-child {
+			background: #e1e9f3;
+		}
+	}
 	th {
 		font-weight: normal;
 	}
 	td {
-		&:hover {
-			box-shadow: 0 0 0 1px white inset;
+		&.prof:hover {
+			position: relative;
+			&:after {
+				position: absolute;
+				content: "";
+				inset: 0; 
+				box-shadow: 0 0 0 1px white inset;
+			}
 		}
 	}
 	tr.sep-top {
 		border-top: 2px solid black;
 	}
-	.prof-untrained {
+	.prof.untrained {
 		color: white;
 		background-color: #6c757d;
 	}
-	.prof-trained {
+	.prof.trained {
 		color: white;
 		background-color: #007bff;
 	}
-	.prof-expert {
+	.prof.expert {
 		color: white;
 		background-color: #28a745;
 	}
-	.prof-master {
+	.prof.master {
 		color: #212529;
 		background-color: #ffc107;
 	}
-	.prof-legendary {
+	.prof.legendary {
 		color: white;
 		background-color: #dc3545;
+	}
+	/*.has-scale {
+		text-align: center;
+		vertical-align: middle;
+		position: relative;
+	}*/
+	td.scale {
+		border-color: black;
+	}
+	.scale {
+		min-width: 100px;
+		/*width: 100%;
+		height: 100%;
+		border: 1px solid #212529;*/
+		position: relative;
+		.fill {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+		}
+		.bar {
+			position: absolute;
+			width: 1px;
+			top: 0;
+			bottom: 0;
+			background-color: #21252940;
+		}
 	}
 }

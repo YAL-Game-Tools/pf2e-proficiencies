@@ -1,5 +1,6 @@
 (function() {
-	window.pf2eProficiencies = [];
+	const classes = [];
+	window.pf2eProficiencies = classes;
 	function add(name, shortName, perLevel) {
 		window.pf2eProficiencies.push({ name, shortName, perLevel });
 	}
@@ -957,4 +958,113 @@
 		{"classDC":1,"perception":2,"weapons":2,"lightArmor":0,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":4,"fortitude":2,"reflex":2,"will":3},
 	]);
 	//
+	let foundryClasses = [
+		{"name":"Sorcerer","hp":6,"kas":["cha"],"defenses":{"unarmored":1,"light":0,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":[],"additional":2}},
+		{"name":"Guardian","hp":12,"kas":["str"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":1},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["athletics"],"additional":3}},
+		{"name":"Inventor","hp":8,"kas":["int"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["crafting"],"additional":3}},
+		{"name":"Bard","hp":8,"kas":["cha"],"defenses":{"unarmored":1,"light":1,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["occultism","performance"],"additional":4}},
+		{"name":"Investigator","hp":8,"kas":["int"],"defenses":{"unarmored":1,"light":1,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["society"],"additional":4}},
+		{"name":"Runesmith","hp":8,"kas":["int"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["crafting"],"additional":2}},
+		{"name":"Druid","hp":8,"kas":["wis"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["nature"],"additional":2}},
+		{"name":"Fighter","hp":10,"kas":["dex","str"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":1},"attacks":{"simple":2,"martial":2,"advanced":1,"unarmed":2,"other":{"name":"","rank":0}},"skills":{"value":[],"additional":3}},
+		{"name":"Animist","hp":8,"kas":["wis"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["religion"],"additional":2}},
+		{"name":"Cleric","hp":8,"kas":["wis"],"defenses":{"unarmored":1,"light":0,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"Deity's favored weapon","rank":1}},"skills":{"value":["religion"],"additional":2}},
+		{"name":"Magus","hp":8,"kas":["dex","str"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["arcana"],"additional":2}},
+		{"name":"Psychic","hp":6,"kas":[],"defenses":{"unarmored":1,"light":0,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["occultism"],"additional":3}},
+		{"name":"Rogue","hp":8,"kas":["dex"],"defenses":{"unarmored":1,"light":1,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["stealth"],"additional":7}},
+		{"name":"Commander","hp":8,"kas":["int"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":1},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["society"],"additional":2}},
+		{"name":"Kineticist","hp":8,"kas":["con"],"defenses":{"unarmored":1,"light":1,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["nature"],"additional":3}},
+		{"name":"Wizard","hp":6,"kas":["int"],"defenses":{"unarmored":1,"light":0,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["arcana"],"additional":2}},
+		{"name":"Alchemist","hp":8,"kas":["int"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"Alchemical Bombs","rank":1}},"skills":{"value":["crafting"],"additional":3}},
+		{"name":"Thaumaturge","hp":8,"kas":["cha"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["arcana","nature","occultism","religion"],"additional":3}},
+		{"name":"Barbarian","hp":12,"kas":["str"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["athletics"],"additional":3}},
+		{"name":"Monk","hp":10,"kas":["dex","str"],"defenses":{"unarmored":2,"light":0,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":[],"additional":4}},
+		{"name":"Ranger","hp":10,"kas":["dex","str"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["survival"],"additional":4}},
+		{"name":"Summoner","hp":10,"kas":["cha"],"defenses":{"unarmored":1,"light":0,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":[],"additional":3}},
+		{"name":"Gunslinger","hp":8,"kas":["dex"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"Simple Firearms, Martial Firearms","rank":2}},"skills":{"value":[],"additional":3}},
+		{"name":"Witch","hp":6,"kas":["int"],"defenses":{"unarmored":1,"light":0,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":[],"additional":3}},
+		{"name":"Oracle","hp":8,"kas":["cha"],"defenses":{"unarmored":1,"light":1,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["religion"],"additional":3}},
+		{"name":"Swashbuckler","hp":10,"kas":["dex"],"defenses":{"unarmored":1,"light":1,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["acrobatics"],"additional":4}},
+		{"name":"Exemplar","hp":10,"kas":["dex","str"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["religion"],"additional":3}},
+		{"name":"Necromancer","hp":8,"kas":["int"],"defenses":{"unarmored":1,"light":1,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["occultism"],"additional":2}},
+		{"name":"Champion","hp":10,"kas":["dex","str"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":1},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["religion"],"additional":2}},
+		{"name":"Animal Companion","hp":6,"kas":[],"defenses":{"unarmored":1,"light":0,"medium":0,"heavy":0},"attacks":{"simple":0,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["acrobatics","athletics"],"additional":0}},
+		{"name":"Construct Companion","hp":6,"kas":[],"defenses":{"unarmored":1,"light":0,"medium":0,"heavy":0},"attacks":{"simple":0,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["acrobatics","athletics"],"additional":0}},
+		{"name":"Eidolon","hp":4,"kas":[],"defenses":{"unarmored":1,"light":0,"medium":0,"heavy":0},"attacks":{"simple":0,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":[],"additional":0}},
+		{"name":"Adept","hp":4,"kas":[],"defenses":{"unarmored":0,"light":0,"medium":0,"heavy":0},"attacks":{"simple":0,"martial":0,"advanced":0,"unarmed":0,"other":{"name":"","rank":0}},"skills":{"value":["arcana"],"additional":0}},
+		{"name":"Scout","hp":6,"kas":[],"defenses":{"unarmored":0,"light":0,"medium":0,"heavy":0},"attacks":{"simple":0,"martial":0,"advanced":0,"unarmed":0,"other":{"name":"","rank":0}},"skills":{"value":["acrobatics","stealth","survival"],"additional":0}},
+		{"name":"Shieldbearer","hp":6,"kas":[],"defenses":{"unarmored":0,"light":0,"medium":0,"heavy":0},"attacks":{"simple":0,"martial":0,"advanced":0,"unarmed":0,"other":{"name":"","rank":0}},"skills":{"value":["athletics","survival"],"additional":0}},
+		{"name":"Berserker","hp":6,"kas":[],"defenses":{"unarmored":0,"light":0,"medium":0,"heavy":0},"attacks":{"simple":0,"martial":0,"advanced":0,"unarmed":0,"other":{"name":"","rank":0}},"skills":{"value":["athletics","intimidation"],"additional":0}},
+		{"name":"Medic","hp":6,"kas":[],"defenses":{"unarmored":0,"light":0,"medium":0,"heavy":0},"attacks":{"simple":0,"martial":0,"advanced":0,"unarmed":0,"other":{"name":"","rank":0}},"skills":{"value":["medicine","nature","survival"],"additional":0}},
+		{"name":"Sharpshooter","hp":6,"kas":[],"defenses":{"unarmored":0,"light":0,"medium":0,"heavy":0},"attacks":{"simple":0,"martial":0,"advanced":0,"unarmed":0,"other":{"name":"","rank":0}},"skills":{"value":["acrobatics","stealth"],"additional":0}},
+	];
+	for (let extras of foundryClasses) {
+		for (let cl of window.pf2eProficiencies) if (cl.name.includes(extras.name)) {
+			for (let key of ["hp", "kas", "skills"]) {
+				cl[key] = extras[key];
+			}
+			let attacks = extras.attacks;
+			if (attacks.advanced > 0) {
+				cl.weapons = "A";
+			} else if (attacks.martial > 0) {
+				cl.weapons = "M";
+			} else if (attacks.simple > 0) {
+				cl.weapons = "S";
+			} else cl.weapons = "U";
+		}
+	}
+	function find(name) {
+		return classes.find(p => p.name == name);
+	}
+	function tweak(name, props) {
+		Object.assign(find(name), props);
+	}
+	// Notes and caveats
+	find("Animist").spells = "P2+S2|Animist spells are divine and prepared.\nApparition spells are spontaneous and depend on the apparition";
+	find("Bard").spells = "S3o";
+	//
+	let clericWithHFont = "P3d+F|And a Heal/Harm font!";
+	tweak("Cleric (Cloistered)", {
+		spells: clericWithHFont,
+		weapons: "S+|Simple weapons and deity weapon(s)",
+	});
+	tweak("Cleric (Warpriest)", {
+		spells: clericWithHFont,
+		weapons: "M*|Simple weapons and deity weapon(s) at level 1\nMartial weapons at level 3\nOnly gains Master in deity weapon(s)",
+	});
+	tweak("Cleric (Battle Harbinger)", {
+		spells: "P2d+F|2+2 bounded spellcasting and an aura font",
+		weapons: "M*|Martial weapons at level 1\nOnly gains Master in deity weapon(s)",
+	});
+	//
+	find("Druid").spells = "P3p";
+	find("Gunslinger (Spellshot)").spells = "P0a|Typical archetype spellcasting benefits";
+	find("Investigator (Palatine)").spells = "P0*|Innate spellcasting benefits with Divine and/or Occult spells";
+	find("Kineticist").spells = "*|Kinetic Activation allows using staves/wands/scrolls with same traits as your gate(s), but grants no slots";
+	find("Magus").spells = "P2a";
+	//
+	for (let cl of classes.filter(cl => cl.name.includes("Necromancer"))) {
+		cl.spells = "P2o";
+	}
+	find("Necromancer (Reaper)").weapons = "M";
+	find("Oracle").spells = "S4d";
+	tweak("Psychic", {
+		spells: "S2o",
+		kas: ["int", "cha"],
+	});
+	find("Sorcerer").spells = "S4*|Tradition depends on your bloodline!";
+	//
+	find("Summoner").spells = "S2*|Tradition depends on your eidolon!";
+	tweak("Summoner (Eidolon)", {
+		kas: ["dex", "str"],
+		spells: "*|Can cast cantrips/spells with feat investment, uses the Summoner's attack/DC",
+		skills: null,
+	});
+	//
+	find("Witch").spells = "P3*|Tradition depends on your patron!";
+	for (let cl of classes.filter(cl => cl.name.includes("Wizard"))) {
+		cl.spells = "P4a";
+	}
+	find("Wizard (War Mage)").weapons = "M";
+	find("Wizard (Runelord)").weapons = "S+|Simple weapons and spears/polearms";
 })();

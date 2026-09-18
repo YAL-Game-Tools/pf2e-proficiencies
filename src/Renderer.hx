@@ -12,9 +12,14 @@ class Renderer {
 	// checkboxes
 	static var sideways:InputElement = find("#sideways");
 	static var separate:InputElement = find("#separate");
+	static var summary:InputElement = find("#show-summary");
 	//
 	static var out:Element = find("#out");
 	static var legend:UListElement = find("#legend");
+	//
+	public static var proficiencyNames = ["Untrained", "Trained", "Expert", "Master", "Legendary"];
+	public static var proficiencyClassNames = proficiencyNames.map(s -> s.toLowerCase());
+	public static var proficiencyShortNames = ["U", "T", "E", "M", "L"];
 	//
 	public static function run() {
 		if (!canRender) return;
@@ -49,8 +54,6 @@ class Renderer {
 			return (level == 1 || level % 5 == 0);
 		}
 		//
-		static var proficiencyNames = ["Untrained", "Trained", "Expert", "Master", "Legendary"];
-		static var proficiencyShortNames = ["U", "T", "E", "M", "L"];
 		function addProficiencyTD(tr:TableRowElement, cl, prof, level:Int, tier:Int) {
 			var td = appendTD(tr, proficiencyShortNames[tier]);
 			td.title = [
@@ -58,17 +61,26 @@ class Renderer {
 				cl.name,
 				prof.name + ": " + proficiencyNames[tier],
 			].join("\n");
-			td.classList.add("prof-" + proficiencyNames[tier].toLowerCase());
+			td.classList.add("prof", proficiencyClassNames[tier]);
 			return td;
 		}
 		//
+		//
 		var sep = separate.checked;
-		var table:TableElement = document.createTableElement();
+		var table:TableElement = null;
 		function prependHeader(text:String) {
 			var h2 = document.createElement("h2");
 			h2.append(text);
 			table.before(h2);
 		}
+		//
+		if (summary.checked) {
+			table = SummaryRenderer.run(chosenClasses, chosenProfs);
+			out.append(table);
+			prependHeader("Summary (WIP)");
+		}
+		//
+		table = document.createTableElement();
 		out.append(table);
 		//
 		if (sideways.checked) { // Name > Class > Level
@@ -184,5 +196,6 @@ class Renderer {
 	public static function init() {
 		sideways.onchange = e -> { run(); };
 		separate.onchange = e -> { run(); };
+		summary.onchange = e -> { run(); };
 	}
 }
