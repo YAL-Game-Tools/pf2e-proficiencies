@@ -10,8 +10,9 @@ class ProficiencyData {
 	}
 	//
 	public var name:String;
-	public var id:String;
+	public var midName:String;
 	public var shortName:String;
+	public var id:String;
 	public var perLevel:Array<ProficiencyPerLevel>;
 	//
 	public var hp:Int;

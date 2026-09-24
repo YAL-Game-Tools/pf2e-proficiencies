@@ -1019,6 +1019,18 @@
 	function tweak(name, props) {
 		Object.assign(find(name), props);
 	}
+	// Semi-short names:
+	function setMidName(name, midName) {
+		find(name).midName = midName;
+	}
+	setMidName("Wizard (Runelord)", "Runelord");
+	setMidName("Wizard (War Mage)", "War Mage");
+	setMidName("Necromancer (Puppeteer)", "Necro (P)");
+	setMidName("Necromancer (Reaper)", "Necro (R)");
+	setMidName("Cleric (Cloistered)", "Cleric (C)");
+	setMidName("Cleric (Warpriest)", "Warpriest");
+	setMidName("Cleric (Battle Harbinger)", "Harbinger");
+	setMidName("Summoner (Eidolon)", "Eidolon");
 	// Notes and caveats
 	find("Animist").spells = "P2+S2|Animist spells are divine and prepared.\nApparition spells are spontaneous and depend on the apparition";
 	find("Bard").spells = "S3o";
@@ -1059,6 +1071,7 @@
 		kas: ["dex", "str"],
 		spells: "*|Can cast cantrips/spells with feat investment, uses the Summoner's attack/DC",
 		skills: null,
+		hp: 10,
 	});
 	//
 	find("Witch").spells = "P3*|Tradition depends on your patron!";

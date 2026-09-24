@@ -12,6 +12,11 @@ class ProficiencyTable {
 	//
 	public static function main() {
 		ProficiencyType.init();
+		for (pt in ProficiencyType.list) {
+			var option = document.createOptionElement();
+			option.text = pt.name;
+			proficiencies.select.append(option);
+		}
 		//
 		var modeStr:String = "pf2e";
 		var search = new URLSearchParams(document.location.search);

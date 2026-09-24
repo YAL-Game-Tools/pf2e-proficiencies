@@ -4,7 +4,7 @@ import js.html.TableRowElement;
 import js.html.Element;
 
 class SummaryRenderer {
-	static function setText(el:Element, snip:String) {
+	public static function setText(el:Element, snip:String) {
 		if (snip == null) return;
 		var text, title;
 		var pos = snip.indexOf("|");
@@ -53,8 +53,19 @@ class SummaryRenderer {
 	}
 	public static function run(chosenClasses:Array<ProficiencyData>, chosenProfs:Array<ProficiencyType>) {
 		var table = document.createTableElement();
+		table.classList.add("summary", "sideways");
 		//
-		var columnGroup:Array<Array<SummaryItem>> = [
+		var colClass = SiCustomExt("Class", (p, e) -> {
+			var snip = p.name;
+			if (p.midName != null) {
+				snip = p.midName + "|" + snip;
+			}
+			setText(e, snip);
+			e.classList.add("align-right");
+		});
+		var cgArmor = null;
+		var columnGroups:Array<Array<SummaryItem>> = [
+			[colClass],
 			[
 				SiCustom("KAS|Key Attribute Score", p -> {
 					var long = p.kas.map(a -> switch (a) {
@@ -90,7 +101,7 @@ class SummaryRenderer {
 					return snip;
 				}),
 				SiProficiency(ProficiencyType.perception),
-			], [
+			], cgArmor = [
 				SiCustom("A1|Armor training", p -> {
 					var first = p.perLevel[0];
 					if (first.heavyArmor > 0) return "H";
@@ -106,36 +117,32 @@ class SummaryRenderer {
 				SiProficiency(ProficiencyType.will),
 			]
 		];
+		columnGroups.insert(columnGroups.indexOf(cgArmor), [colClass]);
 		//
 		var header = table.appendSimple("tr");
-		header.appendSimple("th", "Class");
-		for (group in columnGroup) {
+		for (gi => group in columnGroups) {
 			for (i => item in group) {
 				var text = switch (item) {
 					case SiProficiency(t): t.name;
 					case SiCustom(name, getter): name;
+					case SiCustomExt(name, func): name;
 				}
 				var th = header.appendSimple("th");
-				setText(th, text);
-				if (i == 0) th.classList.add("sep-left");
+				if (text != null) setText(th, text);
+				if (i == 0 && gi > 0) th.classList.add("sep-left");
 			}
 		}
 		//
 		for (cl in chosenClasses) {
 			var tr = table.appendSimple("tr");
-			tr.appendSimple("td", cl.name);
-			for (group in columnGroup) {
+			for (gi => group in columnGroups) {
 				for (i => item in group) {
 					var td:Element = tr.appendSimple("td");
-					if (i == 0) td.classList.add("sep-left");
+					if (i == 0 && gi > 0) td.classList.add("sep-left");
 					switch (item) {
-						case SiProficiency(t): {
-							var byLevel = cl.perLevel.map(t.getter);
-							appendScale(td, cl, t);
-						};
-						case SiCustom(name, getter): {
-							setText(td, getter(cl));
-						};
+						case SiProficiency(t): appendScale(td, cl, t);
+						case SiCustom(name, getter): setText(td, getter(cl));
+						case SiCustomExt(name, func): func(cl, td);
 					}
 				}
 			}
@@ -147,4 +154,5 @@ class SummaryRenderer {
 enum SummaryItem {
 	SiProficiency(t:ProficiencyType);
 	SiCustom(name:String, getter:ProficiencyData->String);
+	SiCustomExt(name:String, func:ProficiencyData->Element->Void);
 }

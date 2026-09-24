@@ -41,7 +41,7 @@ class Renderer {
 		out.innerHTML = "";
 		function appendTD(row:TableRowElement, text:String, isHeader = false) {
 			var th:TableCellElement = isHeader ? cast document.createElement("th") : document.createTableCellElement();
-			th.append(text);
+			SummaryRenderer.setText(th, text);
 			row.append(th);
 			return th;
 		}
@@ -113,7 +113,7 @@ class Renderer {
 						th.classList.add("align-right");
 						th.rowSpan = chosenClasses.length;
 					}
-					appendTH(row, cl.name).classList.add("align-right");
+					appendTH(row, (cl.midName != null ? cl.midName + "|" : "") + cl.name).classList.add("align-right");
 					//
 					for (level in 1 ... 21) {
 						var tier = prof.getter(cl.perLevel[level - 1]);

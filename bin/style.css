@@ -1,5 +1,6 @@
 html {
 	font: 15px sans-serif;
+	overflow: auto;
 }
 main {
 	h1, h2, h3 {
@@ -73,6 +74,9 @@ main details h3 {
 .filter-note {
 	margin-top: 0.3em;
 }
+/*#out {
+	overflow: auto;
+}*/
 #out h2 {
 	margin-bottom: 0.3em;
 	margin-top: 0.5em;
@@ -81,12 +85,18 @@ main details h3 {
 	border: 2px solid black;
 	margin-top: 0.3em;
 	border-collapse: collapse;
+	&.summary {
+		td, th {
+			white-space: nowrap;
+		}
+	}
 	&.sideways tr:first-child {
 		background: Canvas;
 		/* the borders are collapsed so they don't show on the sticky row, how silly */
 		box-shadow: 0 2px 0 black, 0 -2px 0 black;
 		position: sticky;
 		top: 2px;
+		z-index: 1;;
 	}
 	&:not(.sideways) {
 		th:first-child, td:first-child {
@@ -94,6 +104,7 @@ main details h3 {
 			border-collapse: separate;
 			position: sticky;
 			left: -1px;
+			border-color: #C0C0C0;
 			&:after {
 				content: "";
 				position: absolute;
@@ -121,6 +132,18 @@ main details h3 {
 			min-width: 2ch;
 		}
 	}
+	tr:nth-child(2n+2) {
+		td, th, td:first-child, th:first-child {
+			background: #F0f5ff;
+		}
+	}
+	/*
+	tr:nth-child(4n+4) {
+		td, th, td:first-child, th:first-child {
+			background: #fff3e6;
+		}
+	}
+	*/
 	tr:hover {
 		td, th, td:first-child, th:first-child {
 			background: #e1e9f3;
@@ -190,5 +213,10 @@ main details h3 {
 			bottom: 0;
 			background-color: #21252940;
 		}
+	}
+}
+@media (max-width: 1300px) {
+	#out td.scale {
+		min-width: 80px;
 	}
 }

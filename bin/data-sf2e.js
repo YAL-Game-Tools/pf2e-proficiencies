@@ -136,4 +136,28 @@
 		{"classDC":4,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":4,"fortitude":2,"reflex":2,"will":3},
 		{"classDC":4,"perception":2,"weapons":2,"lightArmor":2,"mediumArmor":0,"heavyArmor":0,"unarmored":2,"armor":2,"spells":4,"fortitude":2,"reflex":2,"will":3},
 	]);
+	//
+	let foundryClasses = [
+		{"name":"Mystic","hp":6,"kas":["wis"],"defenses":{"unarmored":1,"light":1,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":[],"additional":3}},
+		{"name":"Witchwarper","hp":8,"kas":["cha","int"],"defenses":{"unarmored":1,"light":1,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":0,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":[],"additional":3}},
+		{"name":"Operative","hp":8,"kas":["dex"],"defenses":{"unarmored":1,"light":1,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"Simple Guns, Martial Guns","rank":2}},"skills":{"value":[],"additional":3}},
+		{"name":"Soldier","hp":10,"kas":["con"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":1},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["intimidation"],"additional":3}},
+		{"name":"Envoy","hp":8,"kas":["cha"],"defenses":{"unarmored":1,"light":1,"medium":0,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":[],"additional":6}},
+		{"name":"Solarian","hp":10,"kas":["str"],"defenses":{"unarmored":1,"light":1,"medium":1,"heavy":0},"attacks":{"simple":1,"martial":1,"advanced":0,"unarmed":1,"other":{"name":"","rank":0}},"skills":{"value":["athletics"],"additional":4}},
+	];
+	for (let extras of foundryClasses) {
+		for (let cl of window.sf2eProficiencies) if (cl.name.includes(extras.name)) {
+			for (let key of ["hp", "kas", "skills"]) {
+				cl[key] = extras[key];
+			}
+			let attacks = extras.attacks;
+			if (attacks.advanced > 0) {
+				cl.weapons = "A";
+			} else if (attacks.martial > 0) {
+				cl.weapons = "M";
+			} else if (attacks.simple > 0) {
+				cl.weapons = "S";
+			} else cl.weapons = "U";
+		}
+	}
 })();
