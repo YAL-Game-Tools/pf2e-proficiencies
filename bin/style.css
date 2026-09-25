@@ -172,19 +172,19 @@ main details h3 {
 	}
 	.prof.trained {
 		color: white;
-		background-color: #007bff;
+		background-color: #28a745;
 	}
 	.prof.expert {
 		color: white;
-		background-color: #28a745;
+		background-color: #007BFF;
 	}
 	.prof.master {
-		color: #212529;
-		background-color: #ffc107;
+		color: white;
+		background-color: #9765F1; 
 	}
 	.prof.legendary {
-		color: white;
-		background-color: #dc3545;
+		color: #212529;
+		background-color: #FFAB07;
 	}
 	/*.has-scale {
 		text-align: center;
@@ -212,6 +212,44 @@ main details h3 {
 			top: 0;
 			bottom: 0;
 			background-color: #21252940;
+		}
+	}
+}
+/* can't say that I have given this much thought */
+body.grayscale {
+	#out table {
+		tr:nth-child(2n+2) {
+			td, th, td:first-child, th:first-child {
+				background: #f5f5f5;
+			}
+		}
+		tr:hover {
+			td, th, td:first-child, th:first-child {
+				background: #E7E7E7;
+			}
+		}
+		.prof.untrained {
+			background-color: rgb(225, 225, 225);
+			color: black;
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAvSURBVChTY/gPBAxYAIo4uiJ0PhjABLFKwgBRklgVoQui8NElYQCXOAr4////fwCALjfJ8BqhTQAAAABJRU5ErkJgggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==);
+		}
+		.prof.trained {
+			background-color: rgb(175, 175, 175);
+			color: black;
+		}
+		.prof.expert {
+			background-color: rgb(125, 125, 125);
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAATSURBVBhXY0AD/6E0GBDFYWAAAIHCA/1lzoggAAAAAElFTkSuQmCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==);
+			color: white;
+		}
+		.prof.master {
+			background-color: rgb(75, 75, 75);
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAVSURBVBhXYwCC/1CMAvALIskw/AcAA08H+WIImQwAAAAASUVORK5CYIIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==);
+			color: white;
+		}
+		.prof.legendary {
+			background-color: rgb(25, 25, 25);
+			color: white;
 		}
 	}
 }

@@ -1023,6 +1023,12 @@
 	function setMidName(name, midName) {
 		find(name).midName = midName;
 	}
+	setMidName("Barbarian (Bloodrager)", "Bloodrager");
+	setMidName("Gunslinger (Spellshot)", "Spellshot");
+	setMidName("Investigator (Palatine)", "Palatine D");
+	setMidName("Ranger (Vindicator)", "Vindicator");
+	setMidName("Rogue (Ruffian)", "Ruffian");
+	setMidName("Rogue (Avenger)", "Avenger");
 	setMidName("Wizard (Runelord)", "Runelord");
 	setMidName("Wizard (War Mage)", "War Mage");
 	setMidName("Necromancer (Puppeteer)", "Necro (P)");

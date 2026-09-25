@@ -112,6 +112,12 @@ class ProficiencyTable {
 				proficiencies.add(prof.name);
 			}
 		}
+		var gray = document.querySelectorAuto("#grayscale", InputElement);
+		gray.onchange = e -> {
+			if (gray.checked) {
+				document.body.classList.add("grayscale");
+			} else document.body.classList.remove("grayscale");
+		};
 		Renderer.canRender = true;
 		Renderer.run();
 	}

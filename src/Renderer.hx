@@ -21,6 +21,15 @@ class Renderer {
 	public static var proficiencyClassNames = proficiencyNames.map(s -> s.toLowerCase());
 	public static var proficiencyShortNames = ["U", "T", "E", "M", "L"];
 	//
+	public static function createLegend() {
+		var table = document.createTableElement();
+		table.appendSimple('td', 'Legend');
+		for (i => prof in proficiencyNames) {
+			var td = table.appendSimple('td', prof);
+			td.classList.add("prof", proficiencyClassNames[i]);
+		}
+		return table;
+	}
 	public static function run() {
 		if (!canRender) return;
 		function getPicks<T:{name:String}>(set:TagBlockSet, arr:Array<T>) {
@@ -39,6 +48,7 @@ class Renderer {
 		//
 		legend.innerHTML = "";
 		out.innerHTML = "";
+		out.append(createLegend());
 		function appendTD(row:TableRowElement, text:String, isHeader = false) {
 			var th:TableCellElement = isHeader ? cast document.createElement("th") : document.createTableCellElement();
 			SummaryRenderer.setText(th, text);
